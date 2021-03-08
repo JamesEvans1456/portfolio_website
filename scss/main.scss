@@ -353,7 +353,7 @@ img {
   }
 
   &-c {
-    background: url($bg-image) no-repeat 20% 40% / cover; //adds the variable image, and sets to no repeat to the center then right and to cover the container
+    background: $bg-image no-repeat 20% 40% / cover; //adds the variable image, and sets to no repeat to the center then right and to cover the container
     height: 50vh; //uses the whole container, page
     border-bottom: 3px solid $main-color;
   }
