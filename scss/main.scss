@@ -1,0 +1,394 @@
+@import 'config'; // Imports other sass files
+@import 'utilities';
+@import 'item_grid';
+
+// General Styles 
+* { //resets borders
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Dosis', sans-serif; //changes font
+  line-height: 1.6;
+  background: #fff;
+}
+
+a {
+  text-decoration: none; //gets rid of underline
+  color: $dark-color; //uses variable set for the color
+}
+
+ul {
+  list-style: none; //gets rid of points
+}
+
+h2, h3, h4 {
+  text-transform: uppercase; //changes all headers text to uppercase
+}
+
+img {
+  width: 100%; //sets width to 100% of its container
+}
+
+// Logo
+#logo {
+  width: 70px; //sets width of logo to 70px
+  height: 70px; //sets height of logo to 70px
+  color: #fff;
+  text-transform: uppercase;
+}
+
+// Main Nav
+#main-nav {
+  display: flex; //sets main-nav to flex
+  justify-content: space-between; //spaces content a symetrical distance between
+  padding-top: 1rem; //adds padding to the top of the main-nav of 1rem
+
+  ul {
+    display: flex; //sets all uls in main-nav to flex
+  }
+
+  li {
+    padding: 1rem 1.5rem; //adds padding to all lis in main-nav
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    border-bottom: 3px transparent solid; //adds a transparent border to the bottom of the links in main-nav
+    padding-bottom: 0.5rem;
+    transition: border-color 0.5s; //fades in 0.5s 
+
+    &:hover {
+      border-color: $medium-color; //when a link in main-nav is hovered, variable medium-color is set as the bottom border
+    }
+
+    &.current {
+      border-color: $main-color; //the page currently on link is set to the variable main-color
+    }
+  }
+}
+
+// Header
+#header {
+  // Header Home
+  &-home {
+    background: $bg-image no-repeat center right / cover; //adds the variable image, and sets to no repeat to the center then right and to cover the container
+    height: 100vh; //uses the whole container, page
+    color: #fff;
+
+    // Header Content
+    .header-content {
+      text-align: center;  // aligns any text in header content to the center
+      padding-top: 20%;
+
+      h1 {
+        font-size: 4rem;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  // Header Inner
+  &-inner {
+    background: $bg-image no-repeat 20% 30% / cover; //adds the variable image, and sets to no repeat to the center then right and to cover the container
+    height: 5.5rem; //uses the whole container, page
+    border-bottom: 3px solid $main-color;
+  }
+}
+
+// Home Sections
+#home {
+  // Home Section A
+  &-a {
+    .specials {
+      margin-top: 3rem; 
+      display: grid; //set everything in the class of div to grid
+      grid-gap: 1rem; //grid gap of everything inside the grid to 1rem
+      grid-template-columns: repeat(4, 1fr); //4 columns with 1fr each
+
+      .fas {
+        color: $main-color;
+        padding-bottom: .4rem;
+      }
+    }
+  }
+
+  // Home Section B
+  &-b {
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      li {
+        line-height: 2;
+
+        &.stats-title {
+          font-size: 1.5rem;
+        }
+
+        &.stats-number {
+          font-size: 2rem;
+          font-weight: bold; //sets text to bold
+        }
+      }
+
+      div {
+        padding: 3rem 0;
+
+        &:nth-child(odd) { //only selects divs which are odd
+          background: $light-color;
+        }
+
+        &:nth-child(even) { //only selects divs which are even
+          background: $medium-color;
+        }
+      }
+    }
+  }
+
+  // Home Section C
+  &-c {
+    .process {
+      display: grid; //displays anything in class of process as a grid
+      grid-template-columns: repeat(4, 1fr); //4 columns of 1fr each
+      grid-gap: 1.5rem;
+      text-align: center;
+
+      // process-step
+      &-step {
+        position: absolute; //positioned relative to the nearest ancestor
+        top: 0;
+        right: 0;
+        font-size: 28px;
+        background: $main-color;
+        color: set-text-color($main-color); //calls function of set-text-color with variable of $main-color
+        border-radius: 50%;
+        height: 15px;
+        width: 15px;
+        line-height: 15px;
+        padding: 1rem;
+        transition: all 1s; //transition fades in for 1s
+      }
+
+      // process-icon
+      &-icon {
+        border-radius: 50%;
+        background: $dark-color;
+        color: set-text-color($dark-color);
+        padding: 2rem;
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        position: relative; //step is inside the icon
+        transition: all 1s;
+
+        &:hover {
+          background: $main-color;
+          width: 90px;
+          height: 90px;
+          line-height: 90px;
+
+          .process-step {
+            background: $dark-color;
+            color: set-text-color($dark-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+// About Sections
+#about {
+  // About A
+  &-a {
+    .about-info {
+      display: grid;
+      grid-template-areas:
+        'bioimage bio bio' // maps out grid
+        'aw1 aw2 aw3';
+      grid-gap: 1.2rem;
+    }
+
+    // Grid Area
+    .bio-image {
+      grid-area: bioimage; // sets html class of bio-image to grid area bioimage
+    }
+
+    .bio {
+      grid-area: bio;
+      border-left: 3px solid $main-color;
+      padding: 0.8rem;
+    }
+
+    .award-1 {
+      grid-area: aw1;
+    }
+
+    .award-2 {
+      grid-area: aw2;
+    }
+
+    .award-3 {
+      grid-area: aw3;
+    }
+
+    .award-1 .fas,
+    .award-2 .fas,
+    .award-3 .fas {
+      color: $main-color;
+      margin: 1rem;
+    }
+  }
+  // About B
+  &-b {
+    .progress {
+      overflow: hidden; //doesnt let content flow over container
+      height: 20px;
+      background: $medium-color;
+      border-radius: 5px;
+      margin-bottom: 0.6rem;
+
+      div {
+        height: 100%;
+        color: #fff;
+        text-align: center;
+        background: $main-color;
+      }
+    }
+  }
+  // About C
+  &-c {
+    .about-logos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 2rem;
+
+      img {
+        width: 70%;
+      }
+    }
+  }
+  // About D
+  &-d {
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 0.5rem;
+
+      ul {
+        list-style: none;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      p {
+        border: 1px solid $medium-color;
+        border-radius: 5px;
+        padding: 0.5rem;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+// Contact Page
+#contact {
+  &-a {
+    .text-fields {
+      display: grid;
+      grid-template-areas:
+        'name email'
+        'subject phone'
+        'message message';
+      grid-gap: 1.2rem;
+      margin-bottom: 1.2rem;
+      border: none;
+
+      // Grid Areas
+      .name-input {
+        grid-area: name;
+      }
+      .subject-input {
+        grid-area: subject;
+      }
+      .email-input {
+        grid-area: email;
+      }
+      .phone-input {
+        grid-area: phone;
+      }
+      .message-input {
+        grid-area: message;
+        height: 100px;
+      }
+
+      .text-input {
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    button[type='submit']{
+      width: 50%;
+    }
+  }
+
+  &-b {
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+  }
+
+  &-c {
+    background: url(/dist/img/items/item1.png) no-repeat 20% 40% / cover; //adds the variable image, and sets to no repeat to the center then right and to cover the container
+    height: 50vh; //uses the whole container, page
+    border-bottom: 3px solid $main-color;
+  }
+}
+
+// Footer 
+#main-footer {
+  background: $dark-color;
+  color: #fff;
+  height: 5rem;
+
+  .footer-content {
+    display: flex; //displays flex to all content in the footer
+    justify-content: space-between; // spaces the social and copyright equally apart
+    height: 5rem;
+    align-items: center;
+
+    .social .fab {
+      margin-right: 1rem;
+      border: 2px #fff solid;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      line-height: 20px;
+      text-align: center;
+      padding: 0.5rem;
+
+      &:hover {
+        background: $main-color;
+      }
+    }
+  }
+}
+
+
+
+// Import Media Queries
+@import 'media';

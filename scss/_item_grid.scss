@@ -1,0 +1,100 @@
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  box-shadow: 0 5px 10px 0 rgba(0,0,0, 0.3); // displays every box with a transparent shadow
+}
+
+.item {
+  position: relative; // relative to itself
+  background: $main-color;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute; //relative to its container
+    display: block; // moves next element to next line
+    background: inherit;
+    opacity: .9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(2) translateX(-75%) translateY(-75%) rotate(-28deg); //scales up item and rotates
+    transition: transform 3s cubic-bezier(0.2, 1, 0.3, 1); //transitions at a 3s delay
+  }
+
+  // Bring in main color overlay 
+  &:hover::after {
+    transform: scale(2) translateX(0) translateY(0) rotate(-28deg);; //when hovered bring the overlay across with a transition
+  }
+
+  // Scale image on hover
+  &:hover &-image {
+    transform: scale(1.2); //when hovered scale up selected image
+  }
+  // Bring in text on hover 
+  &:hover &-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &-image {
+    height: auto;
+    transform: translateZ(0);
+    display: block;
+    transition: transform 750ms cubic-bezier(0.2, 1, 0.3, 1); //transitions the scale up to a slow tempo
+  }
+
+  &-image::before {
+    content: '';
+    display: block; 
+    padding-top: 75%;
+    overflow: hidden; //doesnt overflow image
+  }
+
+  &-image img {
+    position: absolute; //relative to container
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; // automatically adjusts height
+    line-height: 0;
+  }
+
+  &-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+    transform: translateY(-20%); //hides the text
+    transition: opacity 500ms cubic-bezier(0.2, 1, 0.3, 1), transform 500ms cubic-bezier(0.2, 1, 0.3, 1); //hides the text with an opacity and slowly reveals it when hovered
+    transition-delay: 300ms;
+  }
+
+  &-text-wrap {
+    position: absolute;
+    width: 100%;
+    top: 50%; // puts title & category to center
+    transform: translateY(-50%);
+  }
+
+  &-text-title {
+    font-size: 2rem;
+    padding: 0 1rem;
+    margin: 5px 0 0 0;
+  }
+
+  &-text-category {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
